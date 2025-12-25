@@ -9,8 +9,18 @@ import SwiftUI
 
 struct ListView: View {
     var body: some View {
+        
+        @State var items: [String] = [
+            "First item",
+            "Second item",
+            "Third item",
+            "Forth item",
+        ]
+        
         List {
-            ListRowView(title: "This is the first item")
+            ForEach(items, id: \.self) { item in
+                ListRowView(title: item)
+            }
         }
         .navigationTitle("To-do List 📝")
     }
