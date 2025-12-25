@@ -10,10 +10,12 @@ import SwiftUI
 struct ListView: View {
     var body: some View {
         List {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            
+            HStack {
+                Image(systemName: "checkmark.circle")
+                Text("Item number 1")
+            }
         }
-        .navigationTitle("Title")
+        .navigationTitle("To-do List 📝")
     }
 }
 
