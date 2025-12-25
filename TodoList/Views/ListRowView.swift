@@ -19,6 +19,9 @@ struct ListRowView: View {
     }
 }
 
-#Preview {
+
+#Preview(traits: .sizeThatFitsLayout) {
     ListRowView(title: "This is the first item")
+        .padding()
+        .previewLayout(.sizeThatFits)
 }
