@@ -19,7 +19,8 @@ struct CustomAddButton: View {
                 .foregroundStyle(.blue)
         }
         .sheet(isPresented: $showingModal, content: {
-            // To Do
+            AddView()
+                .presentationDetents([.height(200)])
         })
     }
 }
