@@ -18,11 +18,16 @@ struct ListView: View {
     var body: some View {
         VStack {
             HeadListView()
-
             List {
                 ForEach(items, id: \.self) { item in
                     ListRowView(title: item)
                 }
+                .onDelete(perform: { indexSet in
+                    items.remove(atOffsets: indexSet)
+                })
+                .onMove(perform: { indices, newOffset in
+                    items.move(fromOffsets: indices, toOffset: newOffset)
+                })
             }
             .listStyle(PlainListStyle())
         }
