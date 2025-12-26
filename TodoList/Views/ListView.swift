@@ -16,13 +16,16 @@ struct ListView: View {
     ]
     
     var body: some View {
-        List {
-            ForEach(items, id: \.self) { item in
-                ListRowView(title: item)
+        VStack {
+            HeadListView()
+
+            List {
+                ForEach(items, id: \.self) { item in
+                    ListRowView(title: item)
+                }
             }
+            .listStyle(PlainListStyle())
         }
-        .padding(.top)
-        .listStyle(PlainListStyle())
     }
 }
 
