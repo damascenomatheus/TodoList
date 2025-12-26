@@ -14,13 +14,36 @@ struct HeadListView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
-            EditButton()
-            Image(systemName: "plus.app")
+            CustomEditButton()
+            Image(systemName: "plus.app.fill")
                 .imageScale(.large)
+                .foregroundStyle(.blue)
         }
         .padding()
     }
 }
+
+struct CustomEditButton: View {
+    @Environment(\.editMode) private var editMode
+    
+    var body: some View {
+        Button {
+            withAnimation {
+                if editMode?.wrappedValue == .active {
+                    editMode?.wrappedValue = .inactive
+                } else {
+                    editMode?.wrappedValue = .active
+                }
+            }
+        } label: {
+            Image(systemName: "pencil.circle.fill")
+                .imageScale(.large)
+                .foregroundStyle(.blue)
+        }
+    }
+}
+
+
 
 #Preview(traits: .sizeThatFitsLayout) {
     HeadListView()
