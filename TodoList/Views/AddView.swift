@@ -10,6 +10,7 @@ import SwiftUI
 struct AddView: View {
     @State var textFieldValue: String = ""
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var viewModel: ListViewModel
 
     var body: some View {
         VStack {
@@ -19,6 +20,7 @@ struct AddView: View {
                     .bold()
                 Spacer()
                 Button {
+                    viewModel.addItems(title: textFieldValue)
                     dismiss.callAsFunction()
                 } label: {
                     Image(systemName: "plus.circle.fill")

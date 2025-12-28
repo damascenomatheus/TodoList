@@ -24,11 +24,16 @@ class ListViewModel: ObservableObject {
         self.items.append(contentsOf: items)
     }
     
-    private func onMove(indices: IndexSet, newOffset: Int) {
+    func onMove(indices: IndexSet, newOffset: Int) {
         items.move(fromOffsets: indices, toOffset: newOffset)
     }
     
-    private func onDelete(indexSet: IndexSet) {
+    func onDelete(indexSet: IndexSet) {
         items.remove(atOffsets: indexSet)
+    }
+    
+    func addItems(title: String) {
+        let newItem = ItemModel(title: title, isCompleted: false)
+        items.append(newItem)
     }
 }

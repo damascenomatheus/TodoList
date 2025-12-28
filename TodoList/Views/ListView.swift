@@ -8,26 +8,17 @@
 import SwiftUI
 
 struct ListView: View {
-    @State var items: [ItemModel] = [
-        ItemModel(title: "First item", isCompleted: false),
-        ItemModel(title: "Second item", isCompleted: false),
-        ItemModel(title: "Third item", isCompleted: false),
-        ItemModel(title: "Forth item", isCompleted: false)
-    ]
+    @EnvironmentObject private var viewModel: ListViewModel
     
     var body: some View {
         VStack {
             HeadListView()
             List {
-                ForEach(items) { item in
+                ForEach(viewModel.items) { item in
                     ListRowView(item: item)
                 }
-                .onDelete(perform: { indexSet in
-                    items.remove(atOffsets: indexSet)
-                })
-                .onMove(perform: { indices, newOffset in
-                    items.move(fromOffsets: indices, toOffset: newOffset)
-                })
+                .onDelete(perform: viewModel.onDelete)
+                .onMove(perform: viewModel.onMove)
             }
             .listStyle(PlainListStyle())
         }
@@ -37,4 +28,5 @@ struct ListView: View {
 
 #Preview {
     ListView()
+        .environmentObject(ListViewModel())
 }
