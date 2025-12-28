@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct ListView: View {
-    @State var items: [String] = [
-        "First item",
-        "Second item",
-        "Third item",
-        "Forth item",
+    @State var items: [ItemModel] = [
+        ItemModel(title: "First item", isCompleted: false),
+        ItemModel(title: "Second item", isCompleted: false),
+        ItemModel(title: "Third item", isCompleted: false),
+        ItemModel(title: "Forth item", isCompleted: false)
     ]
     
     var body: some View {
         VStack {
             HeadListView()
             List {
-                ForEach(items, id: \.self) { item in
-                    ListRowView(title: item)
+                ForEach(items) { item in
+                    ListRowView(item: item)
                 }
                 .onDelete(perform: { indexSet in
                     items.remove(atOffsets: indexSet)
